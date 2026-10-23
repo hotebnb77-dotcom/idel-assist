@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fond: #f4f7fb;
+  --color-encre: #1e2a3b;
+  --color-doux: #5b6b80;
+  --color-bleu-50: #eef5fc;
+  --color-bleu-100: #d9e9f8;
+  --color-bleu-200: #b5d3f1;
+  --color-bleu-500: #4a8fd6;
+  --color-bleu-600: #3577bf;
+  --color-bleu-700: #2b5f99;
+  --color-vert-50: #ecf8f2;
+  --color-vert-100: #d2efe0;
+  --color-vert-500: #2fa77a;
+  --color-vert-600: #238a63;
+  --color-vert-700: #1d6e50;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--color-fond);
+}
+
+body {
+  background: var(--color-fond);
+  color: var(--color-encre);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+/* Zones de sécurité iPhone (encoche, barre d'accueil) */
+.pt-safe { padding-top: max(env(safe-area-inset-top), 0.75rem); }
+.pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0.5rem); }
+
+:focus-visible {
+  outline: 3px solid var(--color-bleu-500);
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}
+
+dialog::backdrop {
+  background: rgb(15 23 42 / 0.45);
+}
+
+dialog.feuille {
+  margin: auto auto 0 auto;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 92dvh;
+  border-radius: 1.75rem 1.75rem 0 0;
+  padding: 0;
+  border: 0;
+  background: white;
+  color: var(--color-encre);
+}
+
+@media (min-width: 640px) {
+  dialog.feuille { margin: auto; border-radius: 1.75rem; }
+}
+
+.case-indispo {
+  background-image: repeating-linear-gradient(135deg, #e2e8f0 0 4px, transparent 4px 9px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
