@@ -7,6 +7,8 @@ import { formatDateLong, formatDateShort, formatDateTime, todayISO } from "@/lib
 import { detecterConflits, prochainesVisites, transmissionsNonLues, visitesDuJour } from "@/lib/logic";
 import { Badge, Card, IconButton, Pastille, TitreSection, Vide, couleurs, cx, inputClass } from "../ui";
 import type { Aller } from "../AppShell";
+import { rubriques } from "../rubriques";
+import { IconeApp } from "../IconeApp";
 
 export default function Accueil({ aller }: { aller: Aller }) {
   const { state, dispatch } = useStore();
@@ -47,6 +49,16 @@ export default function Accueil({ aller }: { aller: Aller }) {
             : "Pas de remplacement prévu aujourd'hui dans ce cabinet"}
         </p>
       </Card>
+
+      <ul className="mt-3 grid grid-cols-4 gap-2 rounded-3xl bg-white px-2 py-4 shadow-sm ring-1 ring-slate-100" role="list" aria-label="Rubriques">
+        {rubriques
+          .filter((r) => ["patients", "cabinets", "finances", "reglages"].includes(r.vue))
+          .map((r) => (
+            <li key={r.vue}>
+              <IconeApp rubrique={r} aller={aller} />
+            </li>
+          ))}
+      </ul>
 
       <div className="mt-3 grid grid-cols-3 gap-3">
         <button type="button" onClick={() => aller("tournee")} className="rounded-3xl bg-white p-3 text-left shadow-sm ring-1 ring-slate-100">
